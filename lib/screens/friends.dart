@@ -22,7 +22,8 @@ class _FriendsState extends State<Friends> {
   }
 
   Future showFriends() async {
-    var uri = Uri.parse("https://karu-mart.000webhostapp.com/Chats/users.php");
+    // var uri = Uri.parse("https://karu-mart.000webhostapp.com/Chats/users.php");
+    var uri = Uri.parse("http://192.168.0.121:8080/projects/Chats/users/users.php");
     var response = await http.get(uri);
 
     setState(() {
@@ -30,31 +31,6 @@ class _FriendsState extends State<Friends> {
     });
 
     return users;
-  }
-  List data = [];
-  var friend;
-
-  getUsers() async {
-    var response = await http.get(Uri.parse('https://karu-mart.000webhostapp.com/Chats/users.php'));
-    //print(response.body);
-    setState(() {
-      data = jsonDecode(response.body);
-    });
-
-    setState(() {
-      friend = data.map((user)=>Users.fromJSON(user)).toList();
-    });
-
-    print(data);
-
-    return friend;
-  }
-
-  @override
-
-  void initState() {
-    getUsers();
-    super.initState();
   }
   
   @override
@@ -72,15 +48,28 @@ class _FriendsState extends State<Friends> {
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             toolbarHeight: MediaQuery.of(context).size.height * 0.09,
-            centerTitle: true,
+            // centerTitle: true,
             elevation: 0.0,
             shadowColor: Colors.white,
-            title: Text(
-              "Users",
-              style: TextStyle(
-                fontFamily: 'MeriendaOne',
-                fontSize: 23,
-                letterSpacing: 1.5,
+            leading: GestureDetector(
+              onTap: (){
+                Scaffold.of(context).openDrawer();
+              },
+              child: Icon(
+                Icons.menu,
+                color: Colors.white,
+                size: 25,
+              ),
+            ),
+            title: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 50),
+              child: Text(
+                "All Users",
+                style: TextStyle(
+                  fontFamily: 'MeriendaOne',
+                  fontSize: 23,
+                  letterSpacing: 1.5,
+                ),
               ),
             ),
             actions: [

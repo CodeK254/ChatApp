@@ -35,7 +35,7 @@ class _RegisterUserState extends State<RegisterUser> {
   registerUser() async {
     if(phone.text != "" && name.text != ""){
       try{
-        var uri = Uri.parse("https://karu-mart.000webhostapp.com/Chats/register.php");
+        var uri = Uri.parse("http://192.168.0.121:8080/projects/Chats/users/register.php");
         var response = await http.post(uri, body: {
           "phone": phone.text,
           "name": name.text,

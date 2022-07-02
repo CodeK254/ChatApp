@@ -34,7 +34,7 @@ class _UserLoginState extends State<UserLogin> {
   }
 
   loginUser() async {
-    var uri = Uri.parse("https://karu-mart.000webhostapp.com/Chats/login.php");
+    var uri = Uri.parse("http://192.168.0.121:8080/projects/Chats/users/login.php");
     var response = await http.post(uri, body: {
       "phone": phone.text,
       "name": name.text,
